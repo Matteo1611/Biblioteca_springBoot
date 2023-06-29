@@ -51,6 +51,8 @@ public class PrestitoService {
 
         Prestito nuovoPrestito = new Prestito();
         nuovoPrestito.setUtente(utenteTrovato.get());
+        nuovoPrestito.setIdUtente(utenteTrovato.get().getId());
+        nuovoPrestito.setIdLibro(libroTrovato.get().getIdLibro());
         nuovoPrestito.setLibro(libroTrovato.get());
         nuovoPrestito.setTimestampPrestitoInizio(prestitoInputDTO.getTimeStampInizio());
         nuovoPrestito.setTimestampPrestitoFine(prestitoInputDTO.getTimeStampFine());

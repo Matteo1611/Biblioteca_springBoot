@@ -19,7 +19,7 @@ public class PrestitoController {
 
     // Read
     @GetMapping("/getAll")
-    public List<Prestito> getAllAutori(){
+    public List<Prestito> getAllPrestiti(){
         return prestitoServ.getAllPrestiti();
     }
 

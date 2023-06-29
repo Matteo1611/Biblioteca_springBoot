@@ -31,8 +31,8 @@ public class Libro {
     @ManyToMany(mappedBy = "libriScritti") // mappato dalla lista libriScritti in Autore
     private List<Autore> listaAutori = new LinkedList<>();
 
-    //@OneToMany(mappedBy = "libro")
-    //private List<Prestito> prestiti = new LinkedList<>();
+    @OneToMany(mappedBy = "libro")
+    private List<Prestito> prestiti = new LinkedList<>();
 
     public Libro() {
     }
@@ -43,6 +43,7 @@ public class Libro {
         this.titolo = titolo;
         this.categoria = categoria;
         this.dataPubblicazione = dataPubblicazione;
+
     }
 
     @Override

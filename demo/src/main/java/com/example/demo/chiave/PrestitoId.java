@@ -1,44 +1,29 @@
-//package com.example.demo.chiave;
-//
-//import jakarta.persistence.Column;
-//import jakarta.persistence.Embeddable;
-//
-//import java.io.Serializable;
-//import java.time.LocalDateTime;
-//
-//@Embeddable
-//public class PrestitoId implements Serializable {
-//    @Column(name="id_libro")
-//    private int idLibro;
-//    @Column(name="id_utente")
-//    private int idUtente;
-//    @Column(name="timestamp_prestito_inizio")
-//    private LocalDateTime timestampPrestitoInizio;
-//
-//    public PrestitoId(int idLibro, int idUtente, LocalDateTime timestampPrestitoInizio) {
-//        this.idLibro = idLibro;
-//        this.idUtente = idUtente;
-//        this.timestampPrestitoInizio = timestampPrestitoInizio;
-//    }
-//
-//    public int getIdLibro() {
-//        return idLibro;
-//    }
-//
-//    public void setIdLibro(int idLibro) {
-//        this.idLibro = idLibro;
-//    }
-//
-//    public int getIdUtente() {
-//        return idUtente;
-//    }
-//
-//    public void setIdUtente(int idUtente) {
-//        this.idUtente = idUtente;
-//    }
-//
-//    public LocalDateTime getDataPrestito() {
-//        return timestampPrestitoInizio;
-//    }
-//
-//}
+package com.example.demo.chiave;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Embeddable;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import java.io.Serializable;
+import java.time.LocalDateTime;
+
+@Embeddable
+@Getter
+@Setter
+@NoArgsConstructor
+public class PrestitoId implements Serializable {
+
+    private Long idLibro;
+    private Long idUtente;
+    private LocalDateTime timestampPrestitoInizio;
+
+    public PrestitoId(Long idLibro, Long idUtente, LocalDateTime timestampPrestitoInizio) {
+        this.idLibro = idLibro;
+        this.idUtente = idUtente;
+        this.timestampPrestitoInizio = timestampPrestitoInizio;
+    }
+
+
+}

@@ -27,8 +27,8 @@ public class Utente {
     @Column(name = "numero_telefono", nullable = false)
     private long numeroTelefono;
 
-    //@OneToMany(mappedBy = "utente")
-    //private List<Prestito> prestiti = new LinkedList<>();
+    @OneToMany(mappedBy = "utente")
+    private List<Prestito> prestiti = new LinkedList<>();
     public Utente(){
 
     }
