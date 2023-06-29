@@ -15,8 +15,13 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class PrestitoId implements Serializable {
 
+    @Column(name = "id_utente")
     private Long idLibro;
+
+    @Column(name = "id_libro")
     private Long idUtente;
+
+    @Column(name = "timestamp_prestito_inizio")
     private LocalDateTime timestampPrestitoInizio;
 
     public PrestitoId(Long idLibro, Long idUtente, LocalDateTime timestampPrestitoInizio) {

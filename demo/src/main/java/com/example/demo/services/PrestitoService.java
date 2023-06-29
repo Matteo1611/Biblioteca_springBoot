@@ -51,10 +51,12 @@ public class PrestitoService {
 
         Prestito nuovoPrestito = new Prestito();
         nuovoPrestito.setUtente(utenteTrovato.get());
-        nuovoPrestito.setIdUtente(utenteTrovato.get().getId());
-        nuovoPrestito.setIdLibro(libroTrovato.get().getIdLibro());
         nuovoPrestito.setLibro(libroTrovato.get());
-        nuovoPrestito.setTimestampPrestitoInizio(prestitoInputDTO.getTimeStampInizio());
+        nuovoPrestito.setPrestitoId(
+                utenteTrovato.get().getId(),
+                libroTrovato.get().getIdLibro(),
+                prestitoInputDTO.getTimeStampInizio()
+                );
         nuovoPrestito.setTimestampPrestitoFine(prestitoInputDTO.getTimeStampFine());
         return prestitoRepo.save(nuovoPrestito);
 
@@ -72,25 +74,25 @@ public class PrestitoService {
     }
 
     // Update
-    public Prestito updatePrestito(int id, Prestito prestito) {
-        // dobbiamo prima cercare l'prestito attraverso l'id. Questa operazione
-        // potrebbe fallire
-        Optional<Prestito> prestitoCercato = prestitoRepo.findById(id);
-        if (prestitoCercato.isEmpty())
-            throw new EntityNotFoundException("Prestito con id \"" + id + "\" non trovato");
-
-            Prestito nuovoPrestito = prestitoCercato.get(); // copiamo tutti gli attributi
-
-            // poi gli cambio nome, cognome e dataNascita
-            nuovoPrestito.setLibro(prestito.getLibro());
-            nuovoPrestito.setUtente(prestito.getUtente());
-            nuovoPrestito.setTimestampPrestitoInizio(prestito.getTimestampPrestitoInizio());
-            nuovoPrestito.setTimestampPrestitoFine(prestito.getTimestampPrestitoFine());
-
-            // infine salvo
-            return prestitoRepo.save(nuovoPrestito);
-
-    }
+//    public Prestito updatePrestito(int id, Prestito prestito) {
+//        // dobbiamo prima cercare l'prestito attraverso l'id. Questa operazione
+//        // potrebbe fallire
+//        Optional<Prestito> prestitoCercato = prestitoRepo.findById(id);
+//        if (prestitoCercato.isEmpty())
+//            throw new EntityNotFoundException("Prestito con id \"" + id + "\" non trovato");
+//
+//            Prestito nuovoPrestito = prestitoCercato.get(); // copiamo tutti gli attributi
+//
+//            // poi gli cambio nome, cognome e dataNascita
+//            nuovoPrestito.setLibro(prestito.getLibro());
+//            nuovoPrestito.setUtente(prestito.getUtente());
+//            nuovoPrestito.setTimestampPrestitoInizio(prestito.getTimestampPrestitoInizio());
+//            nuovoPrestito.setTimestampPrestitoFine(prestito.getTimestampPrestitoFine());
+//
+//            // infine salvo
+//            return prestitoRepo.save(nuovoPrestito);
+//
+//    }
 
     // Delete
     public void deletePrestito(int id) {

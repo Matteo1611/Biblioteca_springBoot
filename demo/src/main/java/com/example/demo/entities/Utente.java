@@ -1,5 +1,7 @@
 package com.example.demo.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -28,6 +30,7 @@ public class Utente {
     private long numeroTelefono;
 
     @OneToMany(mappedBy = "utente")
+    @JsonIgnore
     private List<Prestito> prestiti = new LinkedList<>();
     public Utente(){
 

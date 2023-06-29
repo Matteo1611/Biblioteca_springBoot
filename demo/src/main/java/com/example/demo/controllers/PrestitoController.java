@@ -5,6 +5,8 @@ import com.example.demo.entities.Prestito;
 import com.example.demo.DTO.PrestitoInputDTO;
 import com.example.demo.services.PrestitoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,15 +31,15 @@ public class PrestitoController {
     }
 
 
-    @PostMapping("/post")
+    @PostMapping(path = "/post",headers = HttpHeaders.ACCEPT+"="+ MediaType.APPLICATION_JSON_VALUE)
     public Prestito createPrestito(@RequestBody PrestitoInputDTO prestitoInputDTO){
         return prestitoServ.createPrestito(prestitoInputDTO);
     }
 
-    @PutMapping("/{id}")
-    public Prestito updateAutore(@PathVariable("id") int id, @RequestBody Prestito prestito) {
-        return prestitoServ.updatePrestito(id, prestito);
-    }
+//    @PutMapping("/{id}")
+//    public Prestito updateAutore(@PathVariable("id") int id, @RequestBody Prestito prestito) {
+//        return prestitoServ.updatePrestito(id, prestito);
+//    }
 
 
     @DeleteMapping("/{id}")

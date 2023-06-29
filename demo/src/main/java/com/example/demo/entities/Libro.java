@@ -1,5 +1,7 @@
 package com.example.demo.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -32,6 +34,7 @@ public class Libro {
     private List<Autore> listaAutori = new LinkedList<>();
 
     @OneToMany(mappedBy = "libro")
+    @JsonIgnore
     private List<Prestito> prestiti = new LinkedList<>();
 
     public Libro() {

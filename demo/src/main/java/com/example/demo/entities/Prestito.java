@@ -3,6 +3,7 @@ package com.example.demo.entities;
 //import com.example.demo.chiave.PrestitoId;
 
 import com.example.demo.chiave.PrestitoId;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -17,31 +18,27 @@ import java.time.LocalDateTime;
 @Setter
 @Entity
 @Table(name = "prestiti")
-@IdClass(PrestitoId.class)
 public class Prestito {
 
-    @Id
-    @Column(name="id_libro")
-    private Long idLibro;
+    @EmbeddedId
+    private PrestitoId prestitoId;
+
 
     @ManyToOne
-    @JoinColumn(name = "id_libro", insertable = false,updatable = false)
+    @MapsId("idLibro")
+    @JoinColumn(name = "id_libro")
     private Libro libro;
 
-    @Id
-    @Column(name="id_utente")
-    private Long idUtente;
-
     @ManyToOne
-    @JoinColumn(name = "id_utente", insertable = false,updatable = false)
+    @MapsId("idUtente")
+    @JoinColumn(name = "id_utente")
     private Utente utente;
-
-    @Id
-    @Column(name = "timestamp_prestito_inizio")
-    private LocalDateTime timestampPrestitoInizio;
 
     @Column(name = "timestamp_prestito_fine")
     private LocalDateTime timestampPrestitoFine;
 
 
+    public void setPrestitoId(Long idUtente, Long idLibro, LocalDateTime timeStampInizio) {
+        this.prestitoId = new PrestitoId(idUtente,idLibro,timeStampInizio);
+    }
 }
